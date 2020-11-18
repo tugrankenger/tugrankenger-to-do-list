@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Model,TodoItem } from './model';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +8,21 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'tugrankenger-to-do-list';
+  model = new Model
+  isDisplay=false;
+
+  getName(){
+    return this.model.user;
+  }
+  getItems(){
+    if(this.isDisplay){
+      return this.model.items;
+    }
+    return this.model.items.filter(item=> !item.action);
+  }
+  addItem(value){
+    if(value!=""){
+      this.model.items.push(new TodoItem(value,false));
+    }
+  }
 }
